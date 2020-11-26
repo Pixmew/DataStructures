@@ -1,13 +1,13 @@
-public class List <T>{
+public class DynamicArray <T>{
 
   private T[] arr;
   private int len;
   private int capacity;
 
   //sets initial Capacity for the List if not Provided
-  public List(){ this(16); }
+  public DynamicArray(){ this(16); }
   //sets the size of List with the given Capacity provided
-  public List(T capacity){
+  public DynamicArray(int capacity){
     if (capacity <= 0) throw new IllegalArgumentError("illegal Capacity " + capacity);
     this.capacity = capacity;
     this.len = 0;
@@ -43,18 +43,22 @@ public class List <T>{
   }
 
   //clears the List and starts with new List of size 16
-  public void clear() { arr = null; this(16); }
+  public void clear() {
+    for(int i =0 ; i < len ;i++){
+      arr[i] = null;
+    }
+  }
   //returns the size of List which usedr thinks
-  public int size() { return len}
+  public int size() { return len;}
 
-  public boolean isEmpty() {return size() == 0}
+  public boolean isEmpty() {return size() == 0;}
 
   //removes the element Provided if present
   public void remove(T elem){
     int index;
-    for (i = 0 ; i < len ; i++){
+    for (int i = 0 ; i < len ; i++){
       if (arr[i] == elem) index = i;
-      else {throw new NoSuchElementException("No such element " + elem);}
+      else {throw new java.util.NoSuchElementException("No such element " + elem);}
     }
     delete(index);
   }
@@ -68,7 +72,7 @@ public class List <T>{
   }
 
   //gets element from respective index privided
-  public void get(int index){ return arr[index]; }
+  public T get(int index){ return arr[index]; }
   //sets the element of a particular index to its new value
-  public void set(T elem , int index) { arr[index] = elem}
+  public void set(T elem , int index) { arr[index] = elem;}
 }
